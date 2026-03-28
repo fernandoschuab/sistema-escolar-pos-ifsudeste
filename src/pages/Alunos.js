@@ -1,73 +1,72 @@
 import { useEffect, useState } from "react";
 import styles from './Alunos.module.css'
 
-function Alunos(){    
+function Alunos() {
 
     const [alunos, setAlunos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [busca, setBusca] = useState('');
 
-    useEffect( ()=> {
+    useEffect(() => {
 
-        const dados = [
-            {id: 1, nome: 'Maria Silva', curso: 'Informática'},
-            {id: 2, nome: 'João Souza', curso: 'Informática'},
-            {id: 3, nome: 'Ana Costa', curso: 'Informática'},
-            {id: 4, nome: 'José da Silva', curso: 'Informática'},
-            {id: 5, nome: 'Fernanda Santos', curso: 'Informática'},
-            {id: 6, nome: 'Gabriel Henrique', curso: 'Informática'},
-        ]
-
-        setTimeout(() =>{
-            setAlunos(dados);
-            setLoading(false);
+        setTimeout(() => {
+            fetch("http://localhost:5001/alunos")
+            .then((resp) => resp.json())
+            .then((data) => {
+                setAlunos(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
         }, 2000);
 
     }, []);
 
-    const alunosFiltrados = alunos.filter(aluno => 
+    const alunosFiltrados = alunos.filter(aluno =>
         aluno.nome.toLowerCase().includes(busca.toLowerCase()) ||
         aluno.curso.toLowerCase().includes(busca.toLowerCase()) ||
         aluno.id.toString().includes(busca)
     );
 
-    if(loading){
+    if (loading) {
         return <p className={styles.loading}>Carregando alunos...</p>
     }
 
-    return(
+    return (
         <div className={styles.container}>
             <h1>Lista de Alunos</h1>
 
-            <input 
-                type="text" 
-                placeholder="Buscar por ID, nome ou curso..." 
-                value={busca} 
-                onChange={(e) => setBusca(e.target.value)} 
+            <input
+                type="text"
+                placeholder="Buscar por ID, nome ou curso..."
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
                 className={styles.busca}
             />
 
-            {alunosFiltrados.length === 0 ? (<p className={styles.vazio}>Nenhum aluno encontrado.</p>) 
-            : (
-                <table className={styles.tabela}>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Curso</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {alunosFiltrados.map(aluno => (
-                            <tr key={aluno.id}>
-                                <td>{aluno.id}</td>
-                                <td>{aluno.nome}</td>
-                                <td>{aluno.curso}</td>
+            {alunosFiltrados.length === 0 ? (<p className={styles.vazio}>Nenhum aluno encontrado.</p>)
+                : (
+                    <table className={styles.tabela}>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Curso</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
+                        </thead>
+                        <tbody>
+                            {alunosFiltrados.map(aluno => (
+                                <tr key={aluno.id}>
+                                    <td>{aluno.id}</td>
+                                    <td>{aluno.nome}</td>
+                                    <td>{aluno.curso}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
 
         </div>
     );
