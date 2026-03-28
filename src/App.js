@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -22,7 +22,7 @@ function App() {
   }, [darkMode]);
 
   return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Router>
 
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
@@ -39,7 +39,7 @@ function App() {
 
         <Footer/>
 
-      </BrowserRouter>
+      </Router>
   );
 }
 
