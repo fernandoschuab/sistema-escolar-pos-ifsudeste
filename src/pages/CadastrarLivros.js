@@ -9,40 +9,32 @@ function CadastrarLivros(){
     const [livros, setLivros] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5001/livros")
-            .then((resp) => resp.json())
-            .then((data) => setLivros(data))
-            .catch((err) => console.log(err));
+        let storedLivros;
+        try {
+            storedLivros = JSON.parse(localStorage.getItem('livros'));
+            if (!Array.isArray(storedLivros)) storedLivros = [];
+        } catch (e) {
+            storedLivros = [];
+        }
+        setLivros(storedLivros);
     }, []);
 
     function adicionarLivro(titulo, autor){
         const novoId = livros.length > 0 ? Math.max(...livros.map(l => Number(l.id))) + 1 : 1;
         const novoLivro = { id: novoId, titulo, autor };
 
-        fetch("http://localhost:5001/livros", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(novoLivro)
-        })
-        .then((resp) => resp.json())
-        .then((data) => {
-            setLivros([...livros, data]);
-            setMensagem('Livro salvo com sucesso no db.json!');
-            setTimeout(() => setMensagem(''), 3000);
-        })
-        .catch((err) => console.log(err));
+        const novosLivros = [...livros, novoLivro];
+        setLivros(novosLivros);
+        localStorage.setItem('livros', JSON.stringify(novosLivros));
+        
+        setMensagem('Livro salvo com sucesso!');
+        setTimeout(() => setMensagem(''), 3000);
     }
 
     function removerLivro(id){
-        fetch(`http://localhost:5001/livros/${id}`, {
-            method: "DELETE"
-        })
-        .then(() => {
-            setLivros(livros.filter(livro => livro.id !== id));
-        })
-        .catch((err) => console.log(err));
+        const novosLivros = livros.filter(livro => livro.id !== id);
+        setLivros(novosLivros);
+        localStorage.setItem('livros', JSON.stringify(novosLivros));
     }
 
     return (       

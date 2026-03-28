@@ -10,17 +10,54 @@ function Alunos() {
     useEffect(() => {
 
         setTimeout(() => {
-            fetch("http://localhost:5001/alunos")
-            .then((resp) => resp.json())
-            .then((data) => {
-                setAlunos(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                setLoading(false);
-            });
-        }, 2000);
+            let dadosAlunos;
+            try {
+                dadosAlunos = JSON.parse(localStorage.getItem('alunos'));
+                if (!Array.isArray(dadosAlunos)) dadosAlunos = [];
+            } catch (e) {
+                dadosAlunos = [];
+            }
+
+            if (dadosAlunos.length === 0) {
+                const defaultAlunos = [
+                    {
+                        "id": 1,
+                        "nome": "Maria Silva",
+                        "curso": "Informática"
+                    },
+                    {
+                        "id": 2,
+                        "nome": "João Souza",
+                        "curso": "Informática"
+                    },
+                    {
+                        "id": 3,
+                        "nome": "Ana Costa",
+                        "curso": "Informática"
+                    },
+                    {
+                        "id": 4,
+                        "nome": "José da Silva",
+                        "curso": "Informática"
+                    },
+                    {
+                        "id": 5,
+                        "nome": "Fernanda Santos",
+                        "curso": "Informática"
+                    },
+                    {
+                        "id": 6,
+                        "nome": "Gabriel Henrique",
+                        "curso": "Informática"
+                    }
+                ];
+                localStorage.setItem('alunos', JSON.stringify(defaultAlunos));
+                setAlunos(defaultAlunos);
+            } else {
+                setAlunos(dadosAlunos);
+            }
+            setLoading(false);
+        }, 1000);
 
     }, []);
 

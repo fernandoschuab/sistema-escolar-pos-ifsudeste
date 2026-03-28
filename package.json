@@ -2,6 +2,7 @@
   "name": "sistema-escolar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://fernandoschuab.github.io/sistema-escolar-pos-ifsudeste",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -18,7 +19,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "backend": "json-server --watch db.json --port 5001",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -41,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
