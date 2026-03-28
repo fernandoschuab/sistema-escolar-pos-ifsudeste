@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -22,24 +22,24 @@ function App() {
   }, [darkMode]);
 
   return (
-      <BrowserRouter>
+    <Router>
 
-        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
-        <main>
-          <Routes>
-            <Route path='/' element={<Home darkMode={darkMode}/>} />
-            <Route path='/cadastarAlunos' element={<CadastrarAlunos/>} />
-            <Route path='/cadastrarLivros' element={<CadastrarLivros/>} />
-            <Route path='/Alunos' element={<Alunos/>} />
-            <Route path='/Biblioteca' element={<Biblioteca/>} />
-            <Route path='/Dashboard' element={<Dashboard/>} />
-          </Routes>
-        </main>
+      <main>
+        <Routes>
+          <Route path='/' element={<Home darkMode={darkMode} />} />
+          <Route path='/cadastarAlunos' element={<CadastrarAlunos />} />
+          <Route path='/cadastrarLivros' element={<CadastrarLivros />} />
+          <Route path='/Alunos' element={<Alunos />} />
+          <Route path='/Biblioteca' element={<Biblioteca />} />
+          <Route path='/Dashboard' element={<Dashboard />} />
+        </Routes>
+      </main>
 
-        <Footer/>
+      <Footer />
 
-      </BrowserRouter>
+    </Router>
   );
 }
 
