@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/sistema-escolar-pos-ifsudeste/static/css/main.5c5ca31d.css",
-    "main.js": "/sistema-escolar-pos-ifsudeste/static/js/main.9787a135.js",
+    "main.js": "/sistema-escolar-pos-ifsudeste/static/js/main.b8ace5ba.js",
     "index.html": "/sistema-escolar-pos-ifsudeste/index.html",
     "main.5c5ca31d.css.map": "/sistema-escolar-pos-ifsudeste/static/css/main.5c5ca31d.css.map",
-    "main.9787a135.js.map": "/sistema-escolar-pos-ifsudeste/static/js/main.9787a135.js.map"
+    "main.b8ace5ba.js.map": "/sistema-escolar-pos-ifsudeste/static/js/main.b8ace5ba.js.map"
   },
   "entrypoints": [
     "static/css/main.5c5ca31d.css",
-    "static/js/main.9787a135.js"
+    "static/js/main.b8ace5ba.js"
   ]
 }
