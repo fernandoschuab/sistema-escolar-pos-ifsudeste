@@ -46,11 +46,7 @@ function Biblioteca() {
                         "titulo": "Desenvolviemnto web",
                         "autor": "Fernando José"
                     },
-                    {
-                        "id": 6,
-                        "titulo": "Dom Casmurro",
-                        "autor": "machado de Assis"
-                    }
+                   
                 ];
                 localStorage.setItem("livros", JSON.stringify(defaultLivros));
                 setLivros(defaultLivros);
