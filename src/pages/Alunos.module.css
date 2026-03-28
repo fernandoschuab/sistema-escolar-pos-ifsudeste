@@ -7,6 +7,14 @@
     border-radius: 8px;
 }
 
+.busca {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
 .vazio{
     width: 100%;
     color: gray;
