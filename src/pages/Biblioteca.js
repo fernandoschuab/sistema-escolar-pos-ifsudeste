@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from './Biblioteca.module.css'
 
 
@@ -49,6 +50,8 @@ function Biblioteca(){
     return(
         <div className={styles.container}>
             <h1>Lista de Livros</h1>
+            
+            <Link to="/cadastrarLivros" className={styles.botao}>Cadastrar Novo Livro</Link>
 
             {livros.length === 0 ? (<p>Nenhum livro encontrado</p>) 
             : (
